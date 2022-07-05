@@ -1,4 +1,4 @@
-# Transaction 
+# Transaction Sample Code
 ## Building the Project
 Simply clone the project in your local machine and inside the project folder run `npm install`
 ## Running Tests
