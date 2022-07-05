@@ -1,13 +1,12 @@
 var Web3 = require('web3');
 const { default: Common, Chain, Hardfork } = require('@ethereumjs/common')
-//var Chain=require('@ethereumjs/common').Chain;
 require('dotenv').config()   // Store environment-specific variable from '.env' to process.env
 
 console.log("Sample1: send transaction using web3.js");
 const provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/'+process.env.INFURA_API_KEY); 
 var web3 = new Web3(provider);
 
-var accountAddress="0xc58cf9B50a32dB74CBd35c503B924753DEbc0e5A";
+var accountAddress="0xc58cf9B50a32dB74CBd35c503B924753DEbc0e5A"; // sender address
 
   const rawTx = {
     //from:'0xc58cf9B50a32dB74CBd35c503B924753DEbc0e5A',
@@ -19,10 +18,10 @@ var accountAddress="0xc58cf9B50a32dB74CBd35c503B924753DEbc0e5A";
 
   web3.eth.getTransactionCount(accountAddress)
   .then(txCount => {
-    rawTx.nonce = txCount; // set nonce for rawTransaction
+    rawTx.nonce = txCount; // set nonce for raw transaction
 
     var Tx = require('@ethereumjs/tx').Transaction;
-    var privateKey = Buffer.from('61863c3e700841c6e545d0c5d1a536813c801f2a669e370bf1d45c477c184015', 'hex');
+    var privateKey = Buffer.from(process.env.PRIV_KEY, 'hex');
     const common = new Common({ chain: Chain.Ropsten})
  
     var tx = new Tx(rawTx,  {common});
